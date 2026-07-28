@@ -57,6 +57,7 @@ SELECT DAY(application_date) AS only_date FROM Certificate_Application;
 
 #LEVEL-2
 
+SELECT ca.application_id,ca.application_date,ct.processing_days,DATE_ADD(ca.application_date,INTERVAL ct.processing_days DAY) AS expected_issue_date FROM Certificate_Application ca JOIN Certificate_Type ct ON ca.certificate_name = ct.certificate_name;
 SELECT application_id,DATE_ADD(application_date,INTERVAL 30 DAY) AS after_30_days FROM Certificate_Application;
 SELECT application_id,DATE_SUB(application_date,INTERVAL 7 DAY) AS before_7_days FROM Certificate_Application;
 
@@ -67,6 +68,17 @@ SELECT *FROM Certificate_Application WHERE YEAR(application_date)=2026;
 
 #PART-E
 
+#LEVEL-1
 
+SELECT application_id,CAST(fee_paid AS SIGNED) AS fee_integer FROM Certificate_Application;
+SELECT certificate_name,CAST(processing_days AS CHAR) AS processing_days_char FROM Certificate_Type;
 
+#LEVEL-2
 
+SELECT application_id,CAST(application_date AS DATETIME) AS application_datetime FROM Certificate_Application;
+SELECT certificate_name,CAST(processing_days AS DECIMAL(5,2)) AS processing_days_decimal FROM Certificate_Type;
+
+#LEVEL-3
+
+SELECT application_id,CAST(fee_paid AS CHAR) AS fee_as_text FROM Certificate_Application;
+SELECT certificate_name,CAST(processing_days AS DECIMAL(5,2)) * 2 AS doubled_processing_days FROM Certificate_Type;

@@ -1,4 +1,3 @@
-DROP DATABASE gram_panchayat_db;
 CREATE DATABASE gram_panchayat_db;
 USE gram_panchayat_db;
 CREATE TABLE Citizen(citizen_id int PRIMARY KEY,full_name varchar(25) NOT NULL,date_of_birth DATE NOT NULL,gender char(1) NOT NULL CHECK(gender='M' OR gender='F'),mobile_number varchar(15) NOT NULL UNIQUE,occupation varchar(50),village_name varchar(50) NOT NULL,is_active boolean NOT NULL);
@@ -24,10 +23,10 @@ UPDATE Certificate_Type SET is_available=1 WHERE certificate_name="No-Dues Certi
 ALTER TABLE Citizen ADD COLUMN Address varchar(200);
 ALTER TABLE Certificate_Type ADD COLUMN issued_date DATE;
 ALTER TABLE Panchayat_Office ADD COLUMN closing_time TIME;
-#DELETE FROM  Citizen;
-#DELETE FROM Certificate_Type;
-#DELETE FROM Certificate_Application;
-#DELETE FROM Panchayat_Office;
+DELETE FROM  Citizen;
+DELETE FROM Certificate_Type;
+DELETE FROM Certificate_Application;
+DELETE FROM Panchayat_Office;
 SELECT * FROM Citizen;
 SELECT * FROM Certificate_Type;
 SELECT * FROM Certificate_Application;
